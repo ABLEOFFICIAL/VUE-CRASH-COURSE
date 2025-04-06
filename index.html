@@ -1,0 +1,27 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Crash Course</title>
+    <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <h1>Vue Crash course</h1>
+    <div id="app">
+      <div v-show="showName">
+        <h2>{{ name }}</h2>
+        <p>{{ message }}</p>
+        <p>{{ age }}</p>
+        <button v-on:click="age++">increase age</button>
+        <button v-on:click="age--">decrease age</button>
+        <button @click="changeTitle">change message</button>
+      </div>
+      <br /><br />
+      <div>
+        <span @click="toggleShowBook">show books </span>
+        <!-- <span v-else>hide books </span> -->
+      </div>
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>

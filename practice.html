@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Practice: Sidebar & Dropdown</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .sidebar {
+        width: 200px;
+        height: 100vh;
+        background-color: #222;
+        color: #fff;
+        padding: 20px;
+        display: none;
+      }
+
+      .sidebar.active {
+        display: block;
+      }
+
+      .content {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .dropdown {
+        margin-top: 20px;
+      }
+
+      .dropdown-menu {
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        width: 200px;
+        background-color: #f9f9f9;
+        display: none;
+      }
+
+      .dropdown-menu.show {
+        display: block;
+      }
+
+      button {
+        margin-right: 10px;
+        padding: 8px 15px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div :class="['sidebar', { active: isSidebarVisible }]">
+        <h3>Sidebar Menu</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <button @click="toggleSidebar">Toggle Sidebar</button>
+        <button @click="toggleDropdown">Toggle Dropdown</button>
+
+        <div class="dropdown">
+          <label for="options">Select an option:</label>
+          <select v-model="selectedOption">
+            <option disabled value="">Please select</option>
+            <option>Vue</option>
+            <option>React</option>
+            <option>Angular</option>
+          </select>
+          <p>You selected: {{ selectedOption }}</p>
+        </div>
+
+        <div :class="['dropdown-menu', { show: isDropdownVisible }]">
+          <p>This is a dropdown menu content.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            isSidebarVisible: false,
+            isDropdownVisible: false,
+            selectedOption: "",
+          };
+        },
+        methods: {
+          toggleSidebar() {
+            this.isSidebarVisible = !this.isSidebarVisible;
+          },
+          toggleDropdown() {
+            this.isDropdownVisible = !this.isDropdownVisible;
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
